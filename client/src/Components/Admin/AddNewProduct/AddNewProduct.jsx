@@ -4,7 +4,6 @@ import { Formik, Form, Field } from 'formik'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { message } from 'antd'
 function AddNewProduct() {
     const priceregex = /^[0-9.]+$/
     const CreateSchema = Yup.object().shape({
@@ -60,26 +59,10 @@ function AddNewProduct() {
                         axios.post("https://final-back-o55wmmnpc-veliyeefff.vercel.app/products", newProduct)
                             .then(res => {
                                 if (res.status === 200) {
-                                    message.open({
-                                        type: "success",
-                                        content: `Create`,
-                                        style: {
-                                            color: "black"
-                                        }
-
-                                    })
                                     navigate("/admin/products")
                                 }
                             })
                             .catch(err => {
-                                message.open({
-                                    type: "error",
-                                    content: `Error`,
-                                    style: {
-                                        color: "black"
-                                    }
-
-                                })
                             })
                     }}
                 >
