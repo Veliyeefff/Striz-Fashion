@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Formik, Field, Form } from 'formik'
 import { useNavigate } from 'react-router-dom'
-import { message } from 'antd'
 import './LoginSignup.css'
 import axios from 'axios'
 import * as Yup from 'yup'
@@ -54,14 +53,6 @@ function LoginSignup() {
                                     if (res.status === 200) {
                                         user.forEach(elem => {
                                             if (elem.email === res.data.data.email) {
-                                                message.open({
-                                                    type: "success",
-                                                    content: `Welcome ${elem.username}`,
-                                                    style: {
-                                                        color: "black"
-                                                    }
-
-                                                })
                                                 localStorage.setItem("user", JSON.stringify(elem))
                                             }
                                             setTimeout(() => {
@@ -74,14 +65,6 @@ function LoginSignup() {
                                     }
                                 })
                                 .catch(error => {
-                                    message.open({
-                                        type: "error",
-                                        content: `Email or password wrong`,
-                                        style: {
-                                            color: "black"
-                                        }
-
-                                    })
                                 })
                         }}
                     >
@@ -121,7 +104,6 @@ function LoginSignup() {
                             )
                                 .then(res => {
                                     if (res.status === 200) {
-                                        message.success("Success")
                                         setTimeout(() => {
                                             window.location.reload()
                                         }, 1000)
